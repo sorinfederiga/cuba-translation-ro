@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.haulmont.cuba:cuba-desktop:6.10.7">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.haulmont.cuba/cuba-desktop/6.10.7/17580bf49a23ab5b943b63163c8503180150d9d5/cuba-desktop-6.10.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.haulmont.cuba/cuba-desktop/6.10.7/1bd5c2707c2736a3b8fdc1bbc58d912f2e2949a1/cuba-desktop-6.10.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

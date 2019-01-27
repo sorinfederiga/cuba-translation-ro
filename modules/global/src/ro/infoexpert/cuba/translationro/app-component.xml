@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<app-component xmlns="http://schemas.haulmont.com/cuba/app-component.xsd"
+               dependsOn="com.haulmont.cuba">
+    <module blocks="*"
+            name="global">
+        <artifact appJar="true"
+                  name="translationro-global"/>
+        <property name="cuba.persistenceConfig"
+                  value="+ro/infoexpert/cuba/translationro/persistence.xml"/>
+        <property name="cuba.metadataConfig"
+                  value="+ro/infoexpert/cuba/translationro/metadata.xml"/>
+        <property name="cuba.viewsConfig"
+                  value="+ro/infoexpert/cuba/translationro/views.xml"/>
+    </module>
+    <module blocks="core"
+            dependsOn="global"
+            name="core">
+        <artifact appJar="true"
+                  name="translationro-core"/>
+        <property name="cuba.springContextConfig"
+                  value="+ro/infoexpert/cuba/translationro/spring.xml"/>
+        <property name="cuba.mainMessagePack"
+                  value="+ro.infoexpert.cuba.translationro.core"/>
+    </module>
+    <module blocks="web,desktop"
+            dependsOn="global"
+            name="gui">
+        <artifact appJar="true"
+                  name="translationro-gui"/>
+    </module>
+    <module blocks="web"
+            dependsOn="gui"
+            name="web">
+        <artifact appJar="true"
+                  name="translationro-web"/>
+        <artifact classifier="web"
+                  configuration="webcontent"
+                  ext="zip"
+                  name="translationro-web"/>
+        <property name="cuba.springContextConfig"
+                  value="+ro/infoexpert/cuba/translationro/web-spring.xml"/>
+        <property name="cuba.dispatcherSpringContextConfig"
+                  value="+ro/infoexpert/cuba/translationro/web-dispatcher-spring.xml"/>
+        <property name="cuba.windowConfig"
+                  value="+ro/infoexpert/cuba/translationro/web-screens.xml"/>
+        <property name="cuba.menuConfig"
+                  value="+ro/infoexpert/cuba/translationro/web-menu.xml"/>
+        <property name="cuba.permissionConfig"
+                  value="+ro/infoexpert/cuba/translationro/web-permissions.xml"/>
+        <property name="cuba.mainMessagePack"
+                  value="+ro.infoexpert.cuba.translationro.web"/>
+    </module>
+    <module blocks="desktop"
+            dependsOn="gui"
+            name="desktop">
+        <artifact name="translationro-desktop"/>
+        <property name="cuba.springContextConfig"
+                  value="+ro/infoexpert/cuba/translationro/desktop-spring.xml"/>
+        <property name="cuba.windowConfig"
+                  value="+ro/infoexpert/cuba/translationro/desktop-screens.xml"/>
+        <property name="cuba.menuConfig"
+                  value="+ro/infoexpert/cuba/translationro/desktop-menu.xml"/>
+        <property name="cuba.permissionConfig"
+                  value="+ro/infoexpert/cuba/translationro/desktop-permissions.xml"/>
+        <property name="cuba.mainMessagePack"
+                  value="+ro.infoexpert.cuba.translationro.desktop"/>
+    </module>
+</app-component>
