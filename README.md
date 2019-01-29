@@ -41,12 +41,16 @@ and click `Use in the project` button, and then press `OK`.
 
 | Platform Version | Add-on Version | Coordinates
 | ---------------- | -------------- | ------------
-| 6.10.*           | 6.10.1          | ro.infoexpert.cuba.translationro:translationro-global:6.10.1
+| 6.10.*           | 6.10.1          | ro.infoexpert.cuba.translationro:translationro-global:6.10.1 
 
 The latest stable version is: `6.10.1`
 
 Add custom application component to your project. Using **CUBA Studio**, go to `PROJECT PROPERTIES` -> `Edit` and click `+` next to `Custom components`,
 then paste into the first field the appropriate coordinates for the desired version, picked from the table above.
+
+Go to the `PROJECT PROPERTIES` section, click `Edit`, then click on the icon near `Available locales` then `Add`. Fill the `Language` with "Română" or "Romanian", `code` with "ro" and check `Available locales`.
+
+![](add_locales.png)
 
 ## Supported DBMS engines
 
