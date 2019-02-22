@@ -5,6 +5,7 @@
             name="global">
         <artifact appJar="true"
                   name="translationro-global"/>
+        <artifact name="translationro-core" classifier="db" ext="zip" configuration="dbscripts"/>
         <property name="cuba.persistenceConfig"
                   value="+ro/infoexpert/cuba/translationro/persistence.xml"/>
         <property name="cuba.metadataConfig"
@@ -49,20 +50,5 @@
                   value="+ro/infoexpert/cuba/translationro/web-permissions.xml"/>
         <property name="cuba.mainMessagePack"
                   value="+ro.infoexpert.cuba.translationro.web"/>
-    </module>
-    <module blocks="desktop"
-            dependsOn="gui"
-            name="desktop">
-        <artifact name="translationro-desktop"/>
-        <property name="cuba.springContextConfig"
-                  value="+ro/infoexpert/cuba/translationro/desktop-spring.xml"/>
-        <property name="cuba.windowConfig"
-                  value="+ro/infoexpert/cuba/translationro/desktop-screens.xml"/>
-        <property name="cuba.menuConfig"
-                  value="+ro/infoexpert/cuba/translationro/desktop-menu.xml"/>
-        <property name="cuba.permissionConfig"
-                  value="+ro/infoexpert/cuba/translationro/desktop-permissions.xml"/>
-        <property name="cuba.mainMessagePack"
-                  value="+ro.infoexpert.cuba.translationro.desktop"/>
     </module>
 </app-component>

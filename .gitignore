@@ -9,3 +9,4 @@ deploy/*
 modules/*/build/*
 out
 test-run
+studio-intellij.xml

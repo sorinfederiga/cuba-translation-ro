@@ -1,6 +1,6 @@
 
 buildscript {
-    ext.cubaVersion = '6.10.7'
+    ext.cubaVersion = '7.0.1'
     repositories {
         
         maven {
@@ -24,18 +24,17 @@ def globalModule = project(":${modulePrefix}-global")
 def coreModule = project(":${modulePrefix}-core")
 def webModule = project(":${modulePrefix}-web")
 def guiModule = project(":${modulePrefix}-gui")
-def desktopModule = project(":${modulePrefix}-desktop")
+
 
 def servletApi = 'javax.servlet:javax.servlet-api:3.1.0'
 
 
-apply(plugin: 'idea')
 apply(plugin: 'cuba')
 
 cuba {
     artifact {
         group = 'ro.infoexpert.cuba.translationro'
-        version = "6.10.1"
+        version = "7.0.1"
         isSnapshot = false
     }
     tomcat {
@@ -53,10 +52,9 @@ dependencies {
 
 def hsql = 'org.hsqldb:hsqldb:2.2.9'
 
-configure([globalModule, coreModule, webModule, guiModule, desktopModule]) {
+configure([globalModule, coreModule, webModule, guiModule]) {
     apply(plugin: 'java')
     apply(plugin: 'maven')
-    apply(plugin: 'idea')
     apply(plugin: 'cuba')
 
     dependencies {
@@ -74,6 +72,12 @@ configure([globalModule, coreModule, webModule, guiModule, desktopModule]) {
 }
 
 configure(globalModule) {
+    dependencies {
+        if (!JavaVersion.current().isJava8()) {
+            runtime('javax.xml.bind:jaxb-api:2.3.1')
+            runtime('org.glassfish.jaxb:jaxb-runtime:2.3.1')
+        }
+    }
     entitiesEnhancing {
         main {
             enabled = true
@@ -99,7 +103,7 @@ configure(coreModule) {
 
     dependencies {
         compile(globalModule)
-        provided(servletApi)
+        compileOnly(servletApi)
         jdbc(hsql)
         testRuntime(hsql)
 
@@ -158,7 +162,7 @@ configure(webModule) {
     }
 
     dependencies {
-        provided(servletApi)
+        compileOnly(servletApi)
         compile(guiModule)
 
     }
@@ -201,44 +205,6 @@ configure(webModule) {
     }
 }
 
-configure(desktopModule) {
-    apply(plugin: 'application')
-    mainClassName = 'ro.infoexpert.cuba.translationro.desktop.App'
-
-    dependencies {
-        compile(guiModule)
-        
-    }
-    assemble.dependsOn = [ classes ]
-
-    jar {
-        manifest {
-            attributes("Permissions": "all-permissions")
-        }
-    }
-
-    installDist {
-        into("${projectDir}/../../deploy/" + applicationName)
-    }
-
-    task deploy(dependsOn: installDist)
-
-    task createWebStart(dependsOn: [assemble, jar], type: CubaWebStartCreation) {
-        signJarsKeystore = "${projectDir}/webstart/sign-jars-keystore.jks"
-        signJarsAlias = 'signJars'
-        signJarsPassword = 'HaulmontSignJars'
-        indexFileName = "${projectDir}/webstart/index.html"
-        basePath = "${modulePrefix}-webstart"
-    }
-
-    task deployWebStart(dependsOn: createWebStart, type: CubaWebStartDeployment) {
-        basePath = "${modulePrefix}-webstart"
-    }
-}
-
-
-
-
 
 task undeploy(type: Delete, dependsOn: ":${modulePrefix}-web:cleanConf") {
     delete("$cuba.tomcat.dir/shared")
@@ -258,8 +224,5 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefi
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.3.1'
-}
 
 apply from: 'publish.gradle';
