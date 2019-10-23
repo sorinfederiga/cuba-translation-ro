@@ -1,6 +1,6 @@
 
 buildscript {
-    ext.cubaVersion = '7.0.10'
+    ext.cubaVersion = '7.1.1'
     repositories {
         
         maven {
@@ -34,7 +34,7 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'ro.infoexpert.cuba.translationro'
-        version = "7.0.2"
+        version = "7.1.1"
         isSnapshot = false
     }
     tomcat {
