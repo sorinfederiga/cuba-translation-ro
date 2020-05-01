@@ -44,8 +44,9 @@ and click `Use in the project` button, and then press `OK`.
 | 6.10.*           | 6.10.1         | ro.infoexpert.cuba.translationro:translationro-global:6.10.1
 | 7.0.*            | 7.0.2          | ro.infoexpert.cuba.translationro:translationro-global:7.0.2
 | 7.1.*            | 7.1.1          | ro.infoexpert.cuba.translationro:translationro-global:7.1.1
+| 7.2.*            | 7.2.1          | ro.infoexpert.cuba.translationro:translationro-global:7.2.1
 
-The latest stable version is: `7.1.1`
+The latest stable version is: `7.2.1`
 
 Add custom application component to your project. Using **CUBA Studio**, go to `PROJECT PROPERTIES` -> `Edit` and click `+` next to `Custom components`,
 then paste into the first field the appropriate coordinates for the desired version, picked from the table above.
